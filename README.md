@@ -193,8 +193,43 @@ output:
 
 <img width="427" height="218" alt="image" src="https://github.com/user-attachments/assets/4a500d22-e889-4b57-bf03-b8a927f1bb46" />
 
+## Q2
+Write a function square(int) and call it:
 
+Normally
 
+Using a function pointer
+
+```cpp
+#include <iostream>
+using namespace std;
+
+// Function to find square
+int square(int x)
+{
+    return x * x;
+}
+
+int main()
+{
+    int n = 5;
+
+    // Normal function call
+    cout << "Square (normal call): " << square(n) << endl;
+
+    // Function pointer call
+    int (*fp)(int);
+    fp = square;
+
+    cout << "Square (function pointer): " << fp(n) << endl;
+
+    return 0;
+}
+```
+
+Output:
+
+<img width="614" height="179" alt="image" src="https://github.com/user-attachments/assets/ce08d72d-4b81-4e96-9416-92bd038ee507" />
 
 
 
