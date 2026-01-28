@@ -235,7 +235,7 @@ Output:
 # C + +
 1. write a c ++ program to read and display elements of an array.
 
-```
+```c++
 #include <iostream>
 using namespace std;
 
@@ -264,4 +264,137 @@ int main() {
 }
 ```
 
+2. write a c ++ program to find the sum of all elements in an array.
 
+```c++
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n, sum = 0;
+
+    // Read number of elements
+    cout << "Enter the number of elements: ";
+    cin >> n;
+
+    int arr[n];
+
+    // Read array elements
+    cout << "Enter " << n << " elements:\n";
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+        sum += arr[i];   // Add each element to sum
+    }
+
+    // Display sum
+    cout << "Sum of all elements in the array = " << sum;
+
+    return 0;
+}
+```
+3. write a c ++ program to copy one array into another
+
+```c++
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+
+    // Read number of elements
+    cout << "Enter the number of elements: ";
+    cin >> n;
+
+    int arr1[n], arr2[n];
+
+    // Read elements of first array
+    cout << "Enter elements of the first array:\n";
+    for (int i = 0; i < n; i++) {
+        cin >> arr1[i];
+    }
+
+    // Copy elements from arr1 to arr2
+    for (int i = 0; i < n; i++) {
+        arr2[i] = arr1[i];
+    }
+
+    // Display copied array
+    cout << "Elements of the second array are:\n";
+    for (int i = 0; i < n; i++) {
+        cout << arr2[i] << " ";
+    }
+
+    return 0;
+}
+```
+
+4. write a c ++ program to print array elements at even index positions
+
+```
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+
+    // Read number of elements
+    cout << "Enter the number of elements: ";
+    cin >> n;
+
+    int arr[n];
+
+    // Read array elements
+    cout << "Enter " << n << " elements:\n";
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+
+    // Print elements at even index positions
+    cout << "Elements at even index positions:\n";
+    for (int i = 0; i < n; i++) {
+        if (i % 2 == 0) {
+            cout << arr[i] << " ";
+        }
+    }
+
+    return 0;
+}
+```
+
+5. write a c ++ program to read and display a 2D array (matrix)
+
+```
+#include <iostream>
+using namespace std;
+
+int main() {
+    int rows, cols;
+
+    // Read number of rows and columns
+    cout << "Enter number of rows: ";
+    cin >> rows;
+    cout << "Enter number of columns: ";
+    cin >> cols;
+
+    int matrix[rows][cols];
+
+    // Read matrix elements
+    cout << "Enter the elements of the matrix:\n";
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            cin >> matrix[i][j];
+        }
+    }
+
+    // Display matrix elements
+    cout << "The matrix is:\n";
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            cout << matrix[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
+```
