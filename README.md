@@ -232,4 +232,36 @@ Output:
 <img width="614" height="179" alt="image" src="https://github.com/user-attachments/assets/ce08d72d-4b81-4e96-9416-92bd038ee507" />
 
 
+# C + +
+1. write a c ++ program to read and display elements of an array.
+
+```
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+
+    // Read number of elements
+    cout << "Enter the number of elements: ";
+    cin >> n;
+
+    int arr[n];
+
+    // Read array elements
+    cout << "Enter " << n << " elements:\n";
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+
+    // Display array elements
+    cout << "The elements of the array are:\n";
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+
+    return 0;
+}
+```
+
 
