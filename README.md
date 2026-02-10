@@ -398,3 +398,304 @@ int main() {
     return 0;
 }
 ```
+
+---
+
+# C++ Structures and Pointer Programs
+
+---
+
+# 1. Structure: Student Records
+
+## Program
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Student {
+    int roll;
+    string name;
+    float marks;
+};
+
+int main() {
+    Student s[5];
+
+    for (int i = 0; i < 5; i++) {
+        cout << "\nEnter details of student " << i + 1 << endl;
+        cout << "Roll Number: ";
+        cin >> s[i].roll;
+
+        cout << "Name: ";
+        cin >> s[i].name;
+
+        cout << "Marks: ";
+        cin >> s[i].marks;
+    }
+
+    cout << "\nStudents who scored more than 75 marks:\n";
+    for (int i = 0; i < 5; i++) {
+        if (s[i].marks > 75) {
+            cout << "\nRoll Number: " << s[i].roll;
+            cout << "\nName: " << s[i].name;
+            cout << "\nMarks: " << s[i].marks << endl;
+        }
+    }
+
+    return 0;
+}
+```
+
+## Input
+
+```
+1 Aman 82
+2 Riya 68
+3 Karan 90
+4 Neha 74
+5 Rohit 78
+```
+
+## Output
+
+```
+Students who scored more than 75 marks:
+Aman
+Karan
+Rohit
+```
+
+---
+
+# 2. Structure: Employee Salary Calculation
+
+## Program
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Employee {
+    int emp_id;
+    string name;
+    float basic_salary;
+};
+
+int main() {
+    Employee e;
+    float hra, da, gross_salary;
+
+    cout << "Enter Employee ID: ";
+    cin >> e.emp_id;
+
+    cout << "Enter Employee Name: ";
+    cin >> e.name;
+
+    cout << "Enter Basic Salary: ";
+    cin >> e.basic_salary;
+
+    hra = 0.20 * e.basic_salary;
+    da  = 0.10 * e.basic_salary;
+    gross_salary = e.basic_salary + hra + da;
+
+    cout << "\nGross Salary: " << gross_salary;
+    return 0;
+}
+```
+
+---
+
+# 3. Pointer Output Questions
+
+## Example 1
+
+```cpp
+int arr[] = {10, 20, 30, 40};
+int* p = arr;
+
+cout << *p << endl;
+cout << *(p + 1) << endl;
+cout << *(p + 3) << endl;
+```
+
+### Output
+
+```
+10
+20
+40
+```
+
+### Explanation
+
+* `p` points to first element
+* `p+1` moves to next element
+* `p+3` moves to fourth element
+
+---
+
+## Example 2
+
+```cpp
+int arr[] = {5, 10, 15, 20};
+int* p = arr + 2;
+
+cout << *p << endl;
+cout << *(p - 1) << endl;
+```
+
+### Output
+
+```
+15
+10
+```
+
+### Explanation
+
+* `arr + 2` points to third element
+* `p - 1` moves one step back
+
+---
+
+## Example 3
+
+```cpp
+int arr[] = {1, 2, 3};
+int* p = arr;
+
+for (int i = 0; i < 3; i++) {
+    cout << *(p++) << " ";
+}
+```
+
+### Output
+
+```
+1 2 3
+```
+
+### Explanation
+
+Post-increment prints first, then moves pointer.
+
+---
+
+## Example 4
+
+```cpp
+char arr[] = {'A','B','C'};
+char* p = arr;
+
+cout << p << endl;
+```
+
+### Explanation
+
+Printing a `char*` treats it as a string and continues until `'\0'`.
+
+---
+
+## Example 5
+
+```cpp
+int arr[] = {3,6,9,12};
+int* p = arr;
+
+while (p <= &arr[3]) {
+    cout << *p << " ";
+    p++;
+}
+```
+
+### Output
+
+```
+3 6 9 12
+```
+
+---
+
+## Example 6
+
+```cpp
+int arr[] = {7,14,21};
+
+cout << arr[1] << endl;
+cout << 1[arr] << endl;
+```
+
+### Output
+
+```
+14
+14
+```
+
+### Explanation
+
+`a[b] == b[a]`
+
+---
+
+# 4. Structure Output Questions
+
+## Example 1
+
+```cpp
+struct Data {
+    int x;
+    int y;
+};
+
+Data arr[] = {{1,2}, {3,4}, {5,6}};
+Data* p = arr;
+
+cout << p->x << endl;
+cout << (p + 1)->y << endl;
+```
+
+### Output
+
+```
+1
+4
+```
+
+---
+
+## Example 2
+
+```cpp
+struct Item {
+    int price;
+};
+
+Item arr[] = {{1}, {3}, {5}};
+Item* p = arr;
+
+cout << p[2].price << endl;
+cout << (*(p + 1)).price << endl;
+```
+
+### Output
+
+```
+5
+3
+```
+
+---
+
+# How to Compile
+
+```
+g++ program.cpp -o program
+./program
+```
+
+---
+
