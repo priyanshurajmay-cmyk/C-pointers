@@ -699,3 +699,912 @@ g++ program.cpp -o program
 
 ---
 
+
+
+
+# 1. Difference Between Binary Files and Text Files in C++
+
+| Feature         | Text File                          | Binary File                |
+| --------------- | ---------------------------------- | -------------------------- |
+| Storage Format  | Stores data as readable characters | Stores data in binary form |
+| Human Readable  | Yes                                | No                         |
+| Size            | Larger                             | Smaller                    |
+| Speed           | Slower                             | Faster                     |
+| Data Conversion | Automatic conversion to text       | No conversion              |
+| Example         | `.txt`                             | `.dat`, `.bin`             |
+
+---
+
+# 2. Polymorphism in C++
+
+Polymorphism means **one function or object behaving in different ways**.
+
+## Types of Polymorphism
+
+### Compile-Time Polymorphism
+
+Achieved using:
+
+* Function Overloading
+* Operator Overloading
+
+Example:
+
+```cpp
+class Demo {
+public:
+    void show(int a) {
+        cout << a;
+    }
+
+    void show(double b) {
+        cout << b;
+    }
+};
+```
+
+### Run-Time Polymorphism
+
+Achieved using:
+
+* Virtual Functions
+* Function Overriding
+
+Example:
+
+```cpp
+class Base {
+public:
+    virtual void display() {
+        cout << "Base";
+    }
+};
+
+class Derived : public Base {
+public:
+    void display() override {
+        cout << "Derived";
+    }
+};
+```
+
+## Difference
+
+| Compile-Time               | Run-Time                 |
+| -------------------------- | ------------------------ |
+| Decided during compilation | Decided during execution |
+| Faster                     | Slightly slower          |
+| Uses overloading           | Uses virtual functions   |
+
+---
+
+# 3. Why Stack is Preferable to Array Sometimes
+
+* Stack follows **LIFO** order.
+* Easy insertion/deletion using `push()` and `pop()`.
+* Better for:
+
+  * Function calls
+  * Undo operations
+  * Expression evaluation
+* Prevents random access mistakes.
+
+---
+
+# 4. Swap Two Numbers Using Function
+
+```cpp
+#include <iostream>
+using namespace std;
+
+void swapNumbers(int &a, int &b) {
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+int main() {
+    int x = 10, y = 20;
+
+    cout << "Before Swap: " << x << " " << y << endl;
+
+    swapNumbers(x, y);
+
+    cout << "After Swap: " << x << " " << y;
+
+    return 0;
+}
+```
+
+---
+
+# 5. Write Data into a File
+
+```cpp
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+    ofstream file("data.txt");
+
+    file << "Hello File Handling";
+
+    file.close();
+
+    cout << "Data written successfully";
+
+    return 0;
+}
+```
+
+---
+
+# 6. Read Data from a File
+
+```cpp
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+    ifstream file("data.txt");
+
+    string data;
+
+    getline(file, data);
+
+    cout << data;
+
+    file.close();
+
+    return 0;
+}
+```
+
+---
+
+# 7. Pointer Declaration, Initialization, and Dereferencing
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int a = 10;
+
+    int *p = &a;
+
+    cout << "Address: " << p << endl;
+    cout << "Value: " << *p;
+
+    return 0;
+}
+```
+
+---
+
+# 8. Access Array Elements Using Pointer Arithmetic
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int arr[] = {10, 20, 30, 40};
+
+    int *p = arr;
+
+    for(int i = 0; i < 4; i++) {
+        cout << *(p + i) << endl;
+    }
+
+    return 0;
+}
+```
+
+---
+
+# 9. Difference Between Pointer and Reference
+
+| Pointer                | Reference               |
+| ---------------------- | ----------------------- |
+| Stores address         | Alias of variable       |
+| Can be NULL            | Cannot be NULL          |
+| Requires dereferencing | No dereferencing        |
+| Can change target      | Cannot change reference |
+
+Example:
+
+```cpp
+int a = 10;
+
+int *p = &a;
+int &r = a;
+```
+
+---
+
+# 10. BankAccount Class
+
+```cpp
+#include <iostream>
+using namespace std;
+
+class BankAccount {
+private:
+    double balance;
+
+public:
+    BankAccount() {
+        balance = 0;
+    }
+
+    void deposit(double amount) {
+        balance += amount;
+    }
+
+    void withdraw(double amount) {
+        if(amount <= balance)
+            balance -= amount;
+        else
+            cout << "Insufficient Balance\n";
+    }
+
+    void displayBalance() {
+        cout << "Balance: " << balance << endl;
+    }
+};
+
+int main() {
+    BankAccount b;
+
+    b.deposit(5000);
+    b.withdraw(2000);
+    b.displayBalance();
+
+    return 0;
+}
+```
+
+---
+
+# 11. Difference Between Method Hiding and Overriding
+
+## Method Hiding
+
+Base function hidden due to same function name.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+class Base {
+public:
+    void show() {
+        cout << "Base";
+    }
+};
+
+class Derived : public Base {
+public:
+    void show(int x) {
+        cout << "Derived";
+    }
+};
+```
+
+## Method Overriding
+
+```cpp
+#include <iostream>
+using namespace std;
+
+class Base {
+public:
+    virtual void show() {
+        cout << "Base";
+    }
+};
+
+class Derived : public Base {
+public:
+    void show() override {
+        cout << "Derived";
+    }
+};
+```
+
+---
+
+# 12. Count Characters, Words, and Lines in File
+
+```cpp
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+    ifstream file("data.txt");
+
+    string line;
+    int chars = 0, words = 0, lines = 0;
+
+    while(getline(file, line)) {
+        lines++;
+        chars += line.length();
+
+        for(char c : line) {
+            if(c == ' ')
+                words++;
+        }
+
+        words++;
+    }
+
+    cout << "Lines: " << lines << endl;
+    cout << "Words: " << words << endl;
+    cout << "Characters: " << chars << endl;
+
+    file.close();
+
+    return 0;
+}
+```
+
+---
+
+# 13. Copy Contents of One File to Another
+
+```cpp
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+    ifstream source("source.txt");
+    ofstream dest("dest.txt");
+
+    string line;
+
+    while(getline(source, line)) {
+        dest << line << endl;
+    }
+
+    source.close();
+    dest.close();
+
+    cout << "File copied";
+
+    return 0;
+}
+```
+
+---
+
+# 14. Append Data into Existing File
+
+```cpp
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+    ofstream file("data.txt", ios::app);
+
+    file << "\nNew Data Added";
+
+    file.close();
+
+    return 0;
+}
+```
+
+---
+
+# 15. Store Student Records in File
+
+```cpp
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+class Student {
+public:
+    int roll;
+    string name;
+
+    void input() {
+        cin >> roll >> name;
+    }
+
+    void display() {
+        cout << roll << " " << name;
+    }
+};
+
+int main() {
+    Student s;
+
+    ofstream file("student.txt");
+
+    s.input();
+
+    file << s.roll << " " << s.name;
+
+    file.close();
+
+    ifstream read("student.txt");
+
+    read >> s.roll >> s.name;
+
+    s.display();
+
+    read.close();
+
+    return 0;
+}
+```
+
+---
+
+# 16. Stack Using Array
+
+```cpp
+#include <iostream>
+using namespace std;
+
+class Stack {
+    int arr[5];
+    int top;
+
+public:
+    Stack() {
+        top = -1;
+    }
+
+    void push(int x) {
+        if(top == 4)
+            cout << "Overflow\n";
+        else
+            arr[++top] = x;
+    }
+
+    void pop() {
+        if(top == -1)
+            cout << "Underflow\n";
+        else
+            top--;
+    }
+
+    void display() {
+        for(int i = top; i >= 0; i--)
+            cout << arr[i] << " ";
+    }
+};
+
+int main() {
+    Stack s;
+
+    s.push(10);
+    s.push(20);
+
+    s.display();
+
+    return 0;
+}
+```
+
+---
+
+# 17. Queue Using Array
+
+```cpp
+#include <iostream>
+using namespace std;
+
+class Queue {
+    int arr[5];
+    int front, rear;
+
+public:
+    Queue() {
+        front = rear = -1;
+    }
+
+    void enqueue(int x) {
+        if(rear == 4)
+            cout << "Overflow\n";
+        else {
+            if(front == -1)
+                front = 0;
+
+            arr[++rear] = x;
+        }
+    }
+
+    void dequeue() {
+        if(front == -1 || front > rear)
+            cout << "Underflow\n";
+        else
+            front++;
+    }
+
+    void display() {
+        for(int i = front; i <= rear; i++)
+            cout << arr[i] << " ";
+    }
+};
+
+int main() {
+    Queue q;
+
+    q.enqueue(10);
+    q.enqueue(20);
+
+    q.display();
+
+    return 0;
+}
+```
+
+---
+
+# 18. Find the Error
+
+```cpp
+int *p;
+*p = 10;
+```
+
+## Error
+
+`p` is uninitialized and points to garbage memory.
+
+## Correct Code
+
+```cpp
+int x;
+int *p = &x;
+*p = 10;
+```
+
+---
+
+# 19. Find the Error
+
+```cpp
+int *a = new int[10];
+delete a;
+```
+
+## Error
+
+Array allocated with `new[]` must be deleted using `delete[]`.
+
+## Correct Code
+
+```cpp
+delete[] a;
+```
+
+---
+
+# 20. Predict Output
+
+```cpp
+int a = 5;
+int *p = &a;
+cout << *p << " " << a;
+```
+
+## Output
+
+```cpp
+5 5
+```
+
+---
+
+# 21. Predict Output
+
+```cpp
+int a[5] = {10,20,30,40,50};
+int *p = a;
+cout << *(p+3);
+```
+
+## Output
+
+```cpp
+40
+```
+
+---
+
+# 22. Predict Output
+
+```cpp
+class A {
+public:
+    A() { cout << "A"; }
+    ~A() { cout << "B"; }
+};
+
+int main() {
+    A x;
+}
+```
+
+## Output
+
+```cpp
+AB
+```
+
+Constructor executes first, destructor executes when object goes out of scope.
+
+---
+
+# 23. Why Destructors Are Important
+
+Destructors:
+
+* Release dynamically allocated memory
+* Close files
+* Prevent memory leaks
+* Free system resources automatically
+
+Example:
+
+```cpp
+~FileHandler() {
+    file.close();
+}
+```
+
+---
+
+# 24. Why Pointers Are Important for Linked Lists
+
+Pointers:
+
+* Connect nodes dynamically
+* Enable dynamic memory allocation
+* Allow flexible data structures
+* Avoid fixed size limitations
+
+Without pointers, linked lists cannot exist.
+
+---
+
+# 25. Why Virtual Functions Are Needed
+
+Virtual functions:
+
+* Enable runtime polymorphism
+* Improve flexibility and extensibility
+* Allow base class pointers to call derived class methods
+
+Essential in:
+
+* GUI frameworks
+* Game engines
+* Plugin systems
+* Large enterprise software
+
+---
+
+# Student Record System
+
+```cpp
+#include <iostream>
+using namespace std;
+
+class Student {
+private:
+    int roll;
+    string name;
+    float marks[3];
+
+public:
+    Student() {
+        roll = 0;
+        name = "Unknown";
+    }
+
+    Student(int r) {
+        roll = r;
+    }
+
+    Student(int r, string n, float m[]) {
+        roll = r;
+        name = n;
+
+        for(int i = 0; i < 3; i++)
+            marks[i] = m[i];
+    }
+
+    ~Student() {
+        cout << "Destructor Called\n";
+    }
+
+    void addStudent() {
+        cout << "Enter Roll and Name: ";
+        cin >> roll >> name;
+
+        cout << "Enter 3 Marks: ";
+
+        for(int i = 0; i < 3; i++)
+            cin >> marks[i];
+    }
+
+    void modifyStudent() {
+        cout << "Modify Name: ";
+        cin >> name;
+    }
+
+    void displayStudent() {
+        cout << "Roll: " << roll << endl;
+        cout << "Name: " << name << endl;
+
+        for(int i = 0; i < 3; i++)
+            cout << marks[i] << " ";
+    }
+
+    void calculateAverage() {
+        float sum = 0;
+
+        for(int i = 0; i < 3; i++)
+            sum += marks[i];
+
+        cout << "\nAverage = " << sum / 3;
+    }
+};
+
+int main() {
+    Student s;
+
+    s.addStudent();
+    s.displayStudent();
+    s.calculateAverage();
+
+    return 0;
+}
+```
+
+---
+
+# Employee Salary Management System
+
+```cpp
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+class Employee {
+private:
+    int id;
+    string name;
+    float salary;
+
+public:
+    void input() {
+        cin >> id >> name >> salary;
+    }
+
+    void calculateSalary() {
+        salary += salary * 0.10;
+    }
+
+    void display() {
+        cout << id << " " << name << " " << salary << endl;
+    }
+
+    void saveToFile(ofstream &file) {
+        file << id << " " << name << " " << salary << endl;
+    }
+
+    void readFromFile(ifstream &file) {
+        file >> id >> name >> salary;
+    }
+};
+
+int main() {
+    Employee e;
+
+    ofstream out("employee.txt");
+
+    e.input();
+
+    e.calculateSalary();
+
+    e.saveToFile(out);
+
+    out.close();
+
+    ifstream in("employee.txt");
+
+    e.readFromFile(in);
+
+    e.display();
+
+    in.close();
+
+    return 0;
+}
+```
+
+---
+
+# Tic-Tac-Toe Game
+
+```cpp
+#include <iostream>
+using namespace std;
+
+class Game {
+private:
+    char board[3][3];
+    char turn;
+
+public:
+    Game() {
+        resetGame();
+        turn = 'X';
+    }
+
+    void resetGame() {
+        for(int i = 0; i < 3; i++) {
+            for(int j = 0; j < 3; j++) {
+                board[i][j] = '-';
+            }
+        }
+    }
+
+    void printBoard() {
+        for(int i = 0; i < 3; i++) {
+            for(int j = 0; j < 3; j++) {
+                cout << board[i][j] << " ";
+            }
+            cout << endl;
+        }
+    }
+
+    void makeMove(int row, int col) {
+        if(board[row][col] == '-') {
+            board[row][col] = turn;
+
+            turn = (turn == 'X') ? 'O' : 'X';
+        }
+        else {
+            cout << "Invalid Move\n";
+        }
+    }
+
+    bool checkWinner() {
+        for(int i = 0; i < 3; i++) {
+            if(board[i][0] == board[i][1] &&
+               board[i][1] == board[i][2] &&
+               board[i][0] != '-')
+                return true;
+        }
+
+        return false;
+    }
+};
+
+int main() {
+    Game g;
+
+    g.printBoard();
+
+    g.makeMove(0,0);
+    g.makeMove(1,1);
+
+    g.printBoard();
+
+    return 0;
+}
+```
+
